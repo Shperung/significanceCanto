@@ -1,11 +1,43 @@
-var express = require('express');
+const express = require('express');
+const app = express();
 
-var app = express();
+const artists = [
+	{
+		id: 1,
+		name: "Nightwish"
+	},
+	{
+		id: 2,
+		name: "Rammstein"
+	},
+	{
+		id: 3,
+		name: "Within Temptation"
+	},
+];
  
-app.get('/', function(req, res) {
-	res.send('<h1>Hello API</h1>');
+app.get('/', (req, res) => {
+	res.send('<h1>Hello API3</h1>');
 });
 
-app.listen(3012, function() {
+app.get('/artists', (req, res) => {
+	res.send(artists);
+});
+
+app.get('/artists/:id', (req, res) => {
+	const artist = artists.find(artist => artist.id === Number(req.params.id));
+	if (artist) {
+		res.send(artist);
+	} else {
+		res.send(`Artist with id - ${req.params.id} no found`);
+	}
+});
+
+
+
+
+
+
+app.listen(3012, () => {
 	console.log('API starded in http://localhost:3012/ ..............');
 });

@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const port = 3012;
+
 const artists = [
 	{
 		id: 1,
@@ -38,6 +40,6 @@ app.get('/artists/:id', (req, res) => {
 
 
 
-app.listen(3012, () => {
-	console.log('API starded in http://localhost:3012/ ..............');
+app.listen(port, () => {
+	console.log(`API starded in http://localhost:${port}/ ..............___`);
 });

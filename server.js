@@ -23,6 +23,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/artists', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
 	res.send(artists);
 });
 

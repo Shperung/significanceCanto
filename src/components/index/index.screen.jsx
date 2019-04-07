@@ -8,7 +8,7 @@ class IndexScreen extends Component {
     return (
       <div>
       <Link to='/artists'>artists</Link>
-        IndexScreen
+        IndexScreen3
       
         
       </div>

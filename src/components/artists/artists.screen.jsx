@@ -13,11 +13,27 @@ class ArtistsScreen extends Component {
   }
  
   render() {
-    console.log("artists", this.props.artists);
     return (
       <div>
       <Link to='/'>Go home</Link>
-        ArtistsScreen2
+      {
+        this.props.artists ? (
+          <ul>
+            {
+              this.props.artists.map(artist => (
+                <li key={artist.id}>
+                  {artist.name}
+                </li>
+              ))
+            }
+          </ul>
+        ) : (
+          <span>
+            no data
+          </span>
+        )
+      }
+      
       
         
       </div>

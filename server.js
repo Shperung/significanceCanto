@@ -2,12 +2,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
+const ObjectID = require('mongodb').ObjectID;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 let db;
 
 const port = 3012;
 
+ 
+app.get('/', (req, res) => {
+	res.send('<h1>Hello API3</h1>');
+});
+
+/* читаю з статичної змінної
 const artists = [
 	{
 		id: 1,
@@ -22,17 +29,22 @@ const artists = [
 		name: "Within Temptation"
 	},
 ];
- 
-app.get('/', (req, res) => {
-	res.send('<h1>Hello API3</h1>');
-});
 
-/* читаю з статичної змінної
 app.get('/artists', (req, res) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
 	res.send(artists);
 });
+
+app.get('/artists/:id', (req, res) => {
+	const artist = artists.find(artist => artist.id === Number(req.params.id));
+	if (artist) {
+		res.send(artist);
+	} else {
+		res.send(`Artist with id - ${req.params.id} no found`);
+	}
+});
+
 */
 
 /* test post
@@ -56,15 +68,16 @@ app.get('/artists', (req, res) => {
 });
 
 app.get('/artists/:id', (req, res) => {
-	const artist = artists.find(artist => artist.id === Number(req.params.id));
-	if (artist) {
-		res.send(artist);
-	} else {
-		res.send(`Artist with id - ${req.params.id} no found`);
-	}
+  db.collection('artists').findOne({_id: ObjectID(req.params.id)}, function (err, doc) {
+    if (err) {
+      console.log('get /artists/:id');
+      return res.sendStatus(500);
+    }
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+    res.send(doc);
+  });
 });
-
-
 
 /* POST */
 app.post('/artists', function (req, res) {

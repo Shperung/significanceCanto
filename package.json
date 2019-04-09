@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/Shperung/significanceCanto#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "mongodb": "^3.2.3",
     "npm": "^6.9.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

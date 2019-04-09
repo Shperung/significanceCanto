@@ -21,7 +21,7 @@ class ArtistsScreen extends Component {
           <ul>
             {
               this.props.artists.map(artist => (
-                <li key={artist.id}>
+                <li key={artist._id}>
                   {artist.name}
                 </li>
               ))

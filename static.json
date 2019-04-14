@@ -1,7 +1,0 @@
-{
-    "proxies": {
-      "/api/": {
-        "origin": "https://significance-canto.herokuapp.com/"
-      }
-    }
-  }

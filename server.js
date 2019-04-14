@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 let db;
 
-const port = process.env.PORT || 3012;
+const port = process.env.PORT || 5000;
 
 const config = {
   MONGO_HOST: process.env.NODE_ENV === 'production'
@@ -67,7 +67,7 @@ app.post('/artists', function (req, res) {
 */
 
 /*GET*/
-app.get('/artists', (req, res) => {
+app.get('/api/artists', (req, res) => {
  
   db.collection('artists').find().toArray(function (err, docs) {
     if (err) {
@@ -80,7 +80,7 @@ app.get('/artists', (req, res) => {
   })
 });
 
-app.get('/artists/:id', (req, res) => {
+app.get('/api/artists/:id', (req, res) => {
   db.collection('artists').findOne({_id: ObjectID(req.params.id)}, function (err, doc) {
     if (err) {
       console.log('get /artists/:id');
@@ -93,7 +93,7 @@ app.get('/artists/:id', (req, res) => {
 });
 
 /* POST */
-app.post('/artists', function (req, res) {
+app.post('/api/artists', function (req, res) {
   const artist = {
     name: req.body.name
   };
@@ -107,7 +107,11 @@ app.post('/artists', function (req, res) {
     //res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
     res.send(artist);
   })
-})
+});
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const dbUser = 'viktorkrav4uk87@gmail.com';
 const dbPass = '19871989_yanot';

@@ -1,9 +1,6 @@
 
-import config from '../config.js';
-
-
 function fetchPosts() {
-  const URL = `${config.URL}:3012/artists`;
+  const URL = `/api/artists`;
   return fetch(URL, { method: 'GET'})
      .then( response => Promise.all([response, response.json()]));
 }

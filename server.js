@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 let db;
 
-const port = 3012;
+const port = process.env.PORT || 3012;
 
 const config = {
   MONGO_HOST: process.env.NODE_ENV === 'production'

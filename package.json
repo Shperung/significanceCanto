@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/Shperung/significanceCanto/issues"
   },
-  "homepage": "https://github.com/Shperung/significanceCanto#readme",
+  "homepage": "https://significance-canto.herokuapp.com/",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",

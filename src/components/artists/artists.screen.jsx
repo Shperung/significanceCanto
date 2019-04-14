@@ -13,6 +13,8 @@ class ArtistsScreen extends Component {
   }
  
   render() {
+
+    console.log('process.env', process.env);
     return (
       <div>
       <Link to='/'>Go home</Link>

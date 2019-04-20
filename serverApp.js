@@ -60,17 +60,29 @@ app.get('/', function (req, res) {
 //     console.log(`API starded in http://localhost:${port}/ .......`);
 // });
 
-const host = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true"
-const client = new MongoClient(host, { useNewUrlParser: true });
-client.connect(err => {
-   if (err) {
-      return console.log('mongodb ERROR->',err);    
-   }
-  db = client.db("significanceCantoDB");
-  app.listen(port, () => {
-    console.log(`API starded in http://localhost:${port}/ .......+`);
-  });
+// const host = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true"
+// const client = new MongoClient(host, { useNewUrlParser: true });
+// client.connect(err => {
+//    if (err) {
+//       return console.log('mongodb ERROR->',err);    
+//    }
+//   db = client.db("significanceCantoDB");
+//   app.listen(port, () => {
+//     console.log(`API starded in http://localhost:${port}/ .......+`);
+//   });
 
+// });
+
+const uri = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("significanceCantoDB").collection("artists");
+  if (err) {
+		return console.log('mongodb ++ERROR++->',err);    
+	}
+  app.listen(port, () => {
+    console.log(`API starded in http://localhost:${port}/ .......+++`);
+  });
 });
 
 

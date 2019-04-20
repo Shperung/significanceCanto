@@ -63,17 +63,35 @@ app.get('/', function (req, res) {
 
 
 const MongoClient = require('mongodb').MongoClient;
-const host = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true"
-const client = new MongoClient(host, { useNewUrlParser: true });
-client.connect(err => {
-   if (err) {
-      return console.log('mongodb ERROR->>>>>>>>>',err);    
-   }
-  db = client.db("significanceCantoDB");
-  app.listen(port, () => {
-    console.log(`API starded in http://localhost:${port}/ .......+++++`);
-  });
+const mongo_uri = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true"
+// const client = new MongoClient(host, { useNewUrlParser: true });
+// client.connect(err => {
+//    if (err) {
+//       return console.log('mongodb ERROR->>>>>>>>>',err);    
+//    }
+//   db = client.db("significanceCantoDB");
+//   app.listen(port, () => {
+//     console.log(`API starded in http://localhost:${port}/ .......+++++`);
+//   });
 
+// });
+let dbClient;
+
+MongoClient
+  .connect(mongo_uri, { useNewUrlParser: true, poolSize: 10 })
+  .then(client => {
+    db = client.db('significanceCantoDB');
+    dbClient = client;
+	collection = db.collection('artists');
+	app.listen(port, () => {
+	console.log(`API starded in http://localhost:${port}/ .......--------`);
+	});
+  })
+  .catch('mongodb ERROR------------', error => console.error(error));
+
+process.on('SIGINT', () => {
+  dbClient.close();
+  process.exit();
 });
 
 

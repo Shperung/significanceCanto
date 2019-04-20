@@ -13,18 +13,23 @@ const port = process.env.PORT || 3012;
 const artists = [
 	{
         id: 1,
-        unique: 'nightwish2',
-		name: "Nightwish2"
+        unique: 'nightwish',
+		name: "Nightwish"
 	},
 	{
         id: 2,
-        unique: 'rammstein2',
-		name: "Rammstein2"
+        unique: 'rammstein',
+		name: "Rammstein"
 	},
 	{
         id: 3,
-        unique: 'within-temptation2',
-		name: "Within Temptation2"
+        unique: 'within-temptation',
+		name: "Within Temptation"
+    },
+    {
+        id: 4,
+        unique: 'epica',
+		name: "Erica"
 	},
 ];
 

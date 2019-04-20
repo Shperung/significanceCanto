@@ -4,12 +4,11 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const ObjectID = require('mongodb').ObjectID;
 
-// const config = require('/config.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 let db;
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3012;
 
 const config = {
   MONGO_HOST: process.env.NODE_ENV === 'production'
@@ -21,50 +20,9 @@ const config = {
 };
 
 
- 
 app.get('/', (req, res) => {
 	res.send('<h1>Hello API3</h1>');
 });
-
-/* читаю з статичної змінної
-const artists = [
-	{
-		id: 1,
-		name: "Nightwish"
-	},
-	{
-		id: 2,
-		name: "Rammstein"
-	},
-	{
-		id: 3,
-		name: "Within Temptation"
-	},
-];
-
-app.get('/artists', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-	res.send(artists);
-});
-
-app.get('/artists/:id', (req, res) => {
-	const artist = artists.find(artist => artist.id === Number(req.params.id));
-	if (artist) {
-		res.send(artist);
-	} else {
-		res.send(`Artist with id - ${req.params.id} no found`);
-	}
-});
-
-*/
-
-/* test post
-app.post('/artists', function (req, res) {
-  console.log('req.body', req.body);
- res.send('post data')
-})
-*/
 
 /*GET*/
 app.get('/api/artists', (req, res) => {
@@ -103,63 +61,22 @@ app.post('/api/artists', function (req, res) {
       console.log('post /artists');
       res.sendStatus(500);
     }
-    //res.setHeader('Access-Control-Allow-Origin', '*');
-    //res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
     res.send(artist);
   })
 });
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-const dbUser = 'viktorkrav4uk87@gmail.com';
-const dbPass = '19871989_yanot';
-const dbHost = 'significance-canto-vwnqo.mongodb.net';
-const dbBase = 'significanceCantoDB';
-
-// MongoClient.connect('mongodb://localhost:27017/significanceCantoDB', function (err, database) {
-// MongoClient.connect(`mongodb+srv://${dbUser}:${dbPass}@${dbHost}/${dbBase}`, { useNewUrlParser: true },  function (err, database) {
-// 	if (err) {
-//     return console.log('mongodb ERROR->',err);    
-//   }
-
-//   db = database.db(dbBase);
-//   app.listen(port, () => {
-//     console.log(`API starded in http://localhost:${port}/ ...........+db...___`);
-//   });
-// })
-
-
-
-// const uri = "mongodb+srv://viktorkrav4uk87@gmail.com:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   if (err) {
-//      return console.log('mongodb ERROR->',err);    
-//   }
-//   client.db("significanceCantoDB");
-//   app.listen(port, () => {
-//     console.log(`API starded in http://localhost:${port}/ ...........+db...___`);
-//   });
-//   client.close();
-// });
-
-
-
-
-//const uri = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true";
+/* MongoClient */
 const client = new MongoClient(config.MONGO_HOST, { useNewUrlParser: true });
 client.connect(err => {
    if (err) {
       return console.log('mongodb ERROR->',err);    
    }
   db = client.db("significanceCantoDB");
- // console.log('ok', db);
   app.listen(port, () => {
-    console.log(`API starded in http://localhost:${port}/ ...........+db...___`);
+    console.log(`API starded in http://localhost:${port}/ .......`);
   });
 
-  //client.close();
 });
 

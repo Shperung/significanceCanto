@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const ObjectID = require('mongodb').ObjectID;
+const path = require('path');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,7 +49,7 @@ app.get('/api/artists/:unique', (req, res) => {
 	}
 });
 
-app.get('/*', function (req, res) {
+app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 

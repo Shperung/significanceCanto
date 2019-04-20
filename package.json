@@ -44,5 +44,9 @@
   ],
   "engines": {
     "node": ">=10.15.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-node": "^8.0.1"
   }
 }

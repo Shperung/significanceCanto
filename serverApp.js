@@ -49,8 +49,10 @@ app.get('/api/artists/:unique', (req, res) => {
 	}
 });
 
+app.use(express.static(path.resolve(__dirname, 'build')));
+
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
 

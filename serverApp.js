@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
 const app = express();
-const ObjectID = require('mongodb').ObjectID;
+
 const path = require('path');
 
 app.use(bodyParser.json());
@@ -11,43 +10,50 @@ let db;
 
 const port = process.env.PORT || 3012;
 
-const artists = [
-	{
-        id: 1,
-        unique: 'nightwish2',
-		name: "Nightwish"
-	},
-	{
-        id: 2,
-        unique: 'rammstein',
-		name: "Rammstein"
-	},
-	{
-        id: 3,
-        unique: 'within-temptation',
-		name: "Within Temptation"
-    },
-    {
-        id: 4,
-        unique: 'epica',
-		name: "Erica"
-	},
-];
-
+/*GET*/
 app.get('/api/artists', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-	res.send(artists);
-});
+ 
+	db.collection('artists').find().toArray(function (err, docs) {
+	  if (err) {
+		console.log('get /artists', err);
+		return res.sendStatus(500);
+	  }
+	  res.setHeader('Access-Control-Allow-Origin', '*');
+	  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+	  res.send(docs);
+	})
+  });
+  
 
-app.get('/api/artists/:unique', (req, res) => {
-	const artist = artists.find(artist => artist.unique === req.params.unique);
-	if (artist) {
-		res.send(artist);
-	} else {
-		res.send(`Artist with unique - ${req.params.unique} no found`);
-	}
-});
+  const ObjectID = require('mongodb').ObjectID;
+  app.get('/api/artists/:id', (req, res) => {
+	db.collection('artists').findOne({_id: ObjectID(req.params.id)}, function (err, doc) {
+	  if (err) {
+		console.log('get /artists/:id');
+		return res.sendStatus(500);
+	  }
+	  res.setHeader('Access-Control-Allow-Origin', '*');
+	  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+	  res.send(doc);
+	});
+  });
+  
+  /* POST */
+  app.post('/api/artists', function (req, res) {
+	const artist = {
+	  name: req.body.name
+	};
+  
+	db.collection('artists').insert(artist, function (err, result) {
+	  if (err) {
+		console.log('post /artists');
+		res.sendStatus(500);
+	  }
+	  res.setHeader('Access-Control-Allow-Origin', '*');
+	  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+	  res.send(artist);
+	})
+  });
 
 app.use(express.static(path.resolve(__dirname, 'build')));
 
@@ -56,34 +62,20 @@ app.get('/', function (req, res) {
 });
 
 
-// app.listen(port, () => {
-//     console.log(`API starded in http://localhost:${port}/ .......`);
-// });
-
-// const host = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true"
-// const client = new MongoClient(host, { useNewUrlParser: true });
-// client.connect(err => {
-//    if (err) {
-//       return console.log('mongodb ERROR->',err);    
-//    }
-//   db = client.db("significanceCantoDB");
-//   app.listen(port, () => {
-//     console.log(`API starded in http://localhost:${port}/ .......+`);
-//   });
-
-// });
-
-const uri = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const MongoClient = require('mongodb').MongoClient;
+const host = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true"
+const client = new MongoClient(host, { useNewUrlParser: true });
 client.connect(err => {
-  const collection = client.db("significanceCantoDB").collection("artists");
-  if (err) {
-		return console.log('mongodb ++ERROR++->',err);    
-	}
+   if (err) {
+      return console.log('mongodb ERROR->>>>>>>>>',err);    
+   }
+  db = client.db("significanceCantoDB");
   app.listen(port, () => {
-    console.log(`API starded in http://localhost:${port}/ .......+++`);
+    console.log(`API starded in http://localhost:${port}/ .......+++++`);
   });
+
 });
+
 
 
 

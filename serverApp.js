@@ -7,55 +7,80 @@ const path = require('path');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.resolve(__dirname, 'build')));
+
 let db;
 
 const port = process.env.PORT || 3012;
 
-const artists = [
-	{
-        id: 1,
-        unique: 'nightwish2',
-		name: "Nightwish"
-	},
-	{
-        id: 2,
-        unique: 'rammstein',
-		name: "Rammstein"
-	},
-	{
-        id: 3,
-        unique: 'within-temptation',
-		name: "Within Temptation"
-    },
-    {
-        id: 4,
-        unique: 'epica',
-		name: "Erica"
-	},
-];
-
-app.get('/api/artists', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-	res.send(artists);
-});
-
-app.get('/api/artists/:unique', (req, res) => {
-	const artist = artists.find(artist => artist.unique === req.params.unique);
-	if (artist) {
-		res.send(artist);
-	} else {
-		res.send(`Artist with unique - ${req.params.unique} no found`);
-	}
-});
-
-app.use(express.static(path.resolve(__dirname, 'build')));
+const config = {
+	MONGO_HOST: process.env.NODE_ENV === 'production'
+		? 'mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true'
+		: 'mongodb://localhost:27017/significanceCantoDB',
+	URL: process.env.NODE_ENV === 'production'
+		? 'https://significance-canto.herokuapp.com/'
+		: 'http://localhost',
+  };
+  
 
 app.get('/', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
 
-app.listen(port, () => {
-    console.log(`API starded in http://localhost:${port}/ .......`);
+/*GET*/
+app.get('/api/artists', (req, res) => {
+ 
+	db.collection('artists').find().toArray(function (err, docs) {
+	  if (err) {
+		console.log('get /artists', err);
+		return res.sendStatus(500);
+	  }
+	  res.setHeader('Access-Control-Allow-Origin', '*');
+	  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+	  res.send(docs);
+	})
+  });
+  
+app.get('/api/artists/:id', (req, res) => {
+	db.collection('artists').findOne({_id: ObjectID(req.params.id)}, function (err, doc) {
+		if (err) {
+		console.log('get /artists/:id');
+		return res.sendStatus(500);
+		}
+		res.setHeader('Access-Control-Allow-Origin', '*');
+		res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+		res.send(doc);
+	});
 });
+  
+  /* POST */
+  app.post('/api/artists', function (req, res) {
+	const artist = {
+	  name: req.body.name
+	};
+  
+	db.collection('artists').insert(artist, function (err, result) {
+	  if (err) {
+		console.log('post /artists');
+		res.sendStatus(500);
+	  }
+	  res.setHeader('Access-Control-Allow-Origin', '*');
+	  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+	  res.send(artist);
+	})
+  });
+  
+  /* MongoClient */
+  const client = new MongoClient(config.MONGO_HOST, { useNewUrlParser: true });
+  client.connect(err => {
+	 if (err) {
+		return console.log('mongodb ERROR->',err);    
+	 }
+	db = client.db("significanceCantoDB");
+	app.listen(port, () => {
+	  console.log(`API starded in http://localhost:${port}/ .......`);
+	});
+  
+  });
+  

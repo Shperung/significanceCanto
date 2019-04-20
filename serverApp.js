@@ -87,12 +87,7 @@ MongoClient
 	console.log(`API starded in http://localhost:${port}/ .......--------`);
 	});
   })
-  .catch('mongodb ERROR------------', error => console.error(error));
-
-process.on('SIGINT', () => {
-  dbClient.close();
-  process.exit();
-});
+  .catch(error => console.error('error-*-*-*-*-*', error));
 
 
 

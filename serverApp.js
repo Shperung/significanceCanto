@@ -13,7 +13,7 @@ const port = process.env.PORT || 3012;
 const artists = [
 	{
         id: 1,
-        unique: 'nightwish',
+        unique: 'nightwish2',
 		name: "Nightwish"
 	},
 	{
@@ -48,9 +48,10 @@ app.get('/api/artists/:unique', (req, res) => {
 	}
 });
 
-app.get('/', (req, res) => {
-	res.send('<h1>Hello API3</h1>');
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
 
 app.listen(port, () => {
     console.log(`API starded in http://localhost:${port}/ .......`);

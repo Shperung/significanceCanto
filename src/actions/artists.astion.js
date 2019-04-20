@@ -1,6 +1,6 @@
 
 function fetchPosts() {
-  const URL = "http://localhost:3012/api/artists";
+  const URL = "/api/artists";
   return fetch(URL, { method: 'GET'})
      .then( response => Promise.all([response, response.json()]));
 }

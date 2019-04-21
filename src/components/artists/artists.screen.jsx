@@ -14,7 +14,6 @@ class ArtistsScreen extends Component {
  
   render() {
 
-    console.log('process.env', process.env);
     return (
       <div>
       <Link to='/'>Go home</Link>
@@ -24,7 +23,9 @@ class ArtistsScreen extends Component {
             {
               this.props.artists.map(artist => (
                 <li key={artist._id}>
-                  {artist.name}
+                  <Link to={`/artists/${artist.unique}`}>
+                    {artist.name}
+                  </Link>                 
                 </li>
               ))
             }

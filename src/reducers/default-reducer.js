@@ -8,6 +8,10 @@ const reducer = (state = initialState, action) => {
       return {
         artists: action.payload,
       };
+    case 'GET_ARTIST':
+      return {
+        artist: action.payload,
+      };
   
     default:
       return state;

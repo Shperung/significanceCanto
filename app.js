@@ -25,11 +25,24 @@ app.get('/api/artists', (req, res) => {
   });
   
 
-  const ObjectID = require('mongodb').ObjectID;
-  app.get('/api/artists/:id', (req, res) => {
-	db.collection('artists').findOne({_id: ObjectID(req.params.id)}, function (err, doc) {
+//   const ObjectID = require('mongodb').ObjectID;
+//   app.get('/api/artists/:id', (req, res) => {
+// 	db.collection('artists').findOne({_id: ObjectID(req.params.id)}, function (err, doc) {
+// 	  if (err) {
+// 		console.log('get /artists/:id');
+// 		return res.sendStatus(500);
+// 	  }
+// 	  res.setHeader('Access-Control-Allow-Origin', '*');
+// 	  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+// 	  res.send(doc);
+// 	});
+//   });
+
+
+  app.get('/api/artists/:unique', (req, res) => {
+	db.collection('artists').findOne({unique: req.params.unique}, function (err, doc) {
 	  if (err) {
-		console.log('get /artists/:id');
+		console.log('get /artists/:unique');
 		return res.sendStatus(500);
 	  }
 	  res.setHeader('Access-Control-Allow-Origin', '*');

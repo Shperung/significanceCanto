@@ -84,7 +84,7 @@ client.connect(err => {
    }
   db = client.db("significanceCantoDB");
   app.listen(port, () => {
-    console.log(`API starded in http://localhost:${port}/ .......+++++`);
+    console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port)
   });
 
 });

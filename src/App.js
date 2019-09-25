@@ -11,6 +11,9 @@ import IndexScreen from './components/index/index.screen.jsx';
 import ArtistsScreen from './components/artists/artists.screen.jsx';
 import ArtistScreen from './components/artists/artist.screen.jsx';
 
+//import './index.css';
+import './style.scss';
+
 import logo from './logo.svg';
 
 class App extends Component {

@@ -76,7 +76,7 @@ app.get('/', function (req, res) {
 
 
 const MongoClient = require('mongodb').MongoClient;
-const mongo_uri = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true"
+const mongo_uri = "mongodb+srv://Shperung:vwnqo123qwer@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true"
 const client = new MongoClient(mongo_uri, { useNewUrlParser: true });
 client.connect(err => {
    if (err) {
@@ -84,7 +84,7 @@ client.connect(err => {
    }
   db = client.db("significanceCantoDB");
   app.listen(port, () => {
-    console.log(`API starded in http://localhost:${port}/ .......+++++`);
+    console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port)
   });
 
 });

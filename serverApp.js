@@ -63,7 +63,7 @@ app.get('/', function (req, res) {
 
 
 const MongoClient = require('mongodb').MongoClient;
-const mongo_uri = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?ssl=true&retryWrites=true"
+const mongo_uri = "mongodb+srv://Shperung:vwnqo123qwer@significance-canto-vwnqo.mongodb.net/significanceCantoDB?ssl=true&retryWrites=true"
 // const client = new MongoClient(host, { useNewUrlParser: true });
 // client.connect(err => {
 //    if (err) {

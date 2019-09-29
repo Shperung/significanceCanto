@@ -13,7 +13,7 @@ const port = process.env.PORT || 3012;
 
 const config = {
   MONGO_HOST: process.env.NODE_ENV === 'production'
-      ? 'mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true'
+      ? 'mongodb+srv://Shperung:vwnqo123qwer@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true'
       : 'mongodb://localhost:27017/significanceCantoDB',
   URL: process.env.NODE_ENV === 'production'
       ? 'https://significance-canto.herokuapp.com/'
@@ -114,7 +114,7 @@ app.get('/*', function (req, res) {
 });
 
 const dbUser = 'viktorkrav4uk87@gmail.com';
-const dbPass = '19871989_yanot';
+const dbPass = 'vwnqo123qwer';
 const dbHost = 'significance-canto-vwnqo.mongodb.net';
 const dbBase = 'significanceCantoDB';
 
@@ -132,7 +132,7 @@ const dbBase = 'significanceCantoDB';
 
 
 
-// const uri = "mongodb+srv://viktorkrav4uk87@gmail.com:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB";
+// const uri = "mongodb+srv://viktorkrav4uk87@gmail.com:vwnqo123qwer@significance-canto-vwnqo.mongodb.net/significanceCantoDB";
 // const client = new MongoClient(uri, { useNewUrlParser: true });
 // client.connect(err => {
 //   if (err) {
@@ -148,7 +148,7 @@ const dbBase = 'significanceCantoDB';
 
 
 
-//const uri = "mongodb+srv://Shperung:19871989_yanot@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true";
+//const uri = "mongodb+srv://Shperung:vwnqo123qwer@significance-canto-vwnqo.mongodb.net/significanceCantoDB?retryWrites=true";
 const client = new MongoClient(config.MONGO_HOST, { useNewUrlParser: true });
 client.connect(err => {
    if (err) {

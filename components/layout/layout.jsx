@@ -1,6 +1,6 @@
 import Navbar from "../navbar/navbar.block.jsx";
 
-import "../../style/base.css";
+import "../../style/base.scss";
 
 const Layout = props => (
   <main>

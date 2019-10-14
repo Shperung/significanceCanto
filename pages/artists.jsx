@@ -1,11 +1,10 @@
-import Navbar from "../components/navbar.block";
+import Layout from "../components/layout/layout.jsx";
 
 const Artists = () => (
-  <main>
+  <Layout>
     <h1>Artists</h1>
-    <div>hext index page2</div>
-    <Navbar />
-  </main>
+    <div>hext Artists page55</div>
+  </Layout>
 );
 
 export default Artists;

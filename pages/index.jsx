@@ -1,11 +1,10 @@
-import Navbar from "../components/navbar.block";
+import Layout from "../components/layout/layout.jsx";
 
 const Index = () => (
-  <main>
+  <Layout>
     <h1>Main page</h1>
-    <div>hext index page2</div>
-    <Navbar />
-  </main>
+    <div>hext index page55</div>
+  </Layout>
 );
 
 export default Index;

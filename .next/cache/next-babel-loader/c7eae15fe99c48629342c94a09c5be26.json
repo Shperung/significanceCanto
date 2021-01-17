@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport Layout from \"../components/layout/layout.jsx\";\n\nconst Artists = () => __jsx(Layout, null, __jsx(\"h1\", null, \"Artists\"), __jsx(\"div\", null, \"hext Artists page55\"));\n\nexport default Artists;","map":null,"metadata":{},"sourceType":"module"}

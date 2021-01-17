@@ -1,0 +1,45 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "multi private-next-pages/artists.jsx": 0,
+      "multi private-next-pages/index.jsx": 1,
+      "multi next/dist/pages/_app": 2,
+      "multi next/dist/pages/_error": 3,
+      "multi next/dist/pages/_document": 4
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4
+    }
+  },
+  "chunks": {
+    "byName": {
+      "static\\JqZxm05dEmZHAEGerbGKM\\pages\\_app.js": 0,
+      "static\\JqZxm05dEmZHAEGerbGKM\\pages\\_document.js": 1,
+      "static\\JqZxm05dEmZHAEGerbGKM\\pages\\_error.js": 2,
+      "static\\JqZxm05dEmZHAEGerbGKM\\pages\\artists.js": 3,
+      "static\\JqZxm05dEmZHAEGerbGKM\\pages\\index.js": 4,
+      "static\\0DzZmnJI9OKZUHTAp1lgJ\\pages\\_app.js": 5,
+      "static\\0DzZmnJI9OKZUHTAp1lgJ\\pages\\_document.js": 6,
+      "static\\0DzZmnJI9OKZUHTAp1lgJ\\pages\\_error.js": 7,
+      "static\\0DzZmnJI9OKZUHTAp1lgJ\\pages\\artists.js": 8,
+      "static\\0DzZmnJI9OKZUHTAp1lgJ\\pages\\index.js": 9,
+      "static\\4XJooGHIsmBm56IRe3KLT\\pages\\_app.js": 0,
+      "static\\4XJooGHIsmBm56IRe3KLT\\pages\\_document.js": 1,
+      "static\\4XJooGHIsmBm56IRe3KLT\\pages\\_error.js": 2,
+      "static\\4XJooGHIsmBm56IRe3KLT\\pages\\artists.js": 3,
+      "static\\4XJooGHIsmBm56IRe3KLT\\pages\\index.js": 4
+    },
+    "bySource": {},
+    "usedIds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}

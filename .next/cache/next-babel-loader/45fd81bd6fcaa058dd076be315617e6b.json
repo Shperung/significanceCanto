@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport Navbar from \"../navbar/navbar.block.jsx\";\nimport \"../../style/base.scss\";\n\nvar Layout = function Layout(props) {\n  return __jsx(\"main\", null, __jsx(Navbar, null), props.children);\n};\n\nexport default Layout;","map":null,"metadata":{},"sourceType":"module"}

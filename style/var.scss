@@ -1,0 +1,28 @@
+$fontDefault: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+$container: 1148px;
+$tablet-big: 991px;
+$tablet-middle: 880px;
+$tablet: 768px;
+$phone-max: 620px;
+$phone: 480px;
+$phone-min: 420px;
+
+$min-modal-height: 820px;
+$max-modal-height: 600px;
+
+$textDark: #020d15;
+$dark: #0f2234;
+$greyDark: #3b5960;
+$grey: #6c8288;
+$greenDark: #119982;
+$green: #12b796;
+$blueDark: #1287d5;
+$blue: #13a1fe;
+
+$lightGradient: linear-gradient(
+  to right,
+  rgba(254, 254, 254, 1) 0%,
+  rgba(230, 244, 253, 1) 100%
+);
+$greenBlueDiagonalGradient: linear-gradient(135deg, $green 0%, $blue 100%);
